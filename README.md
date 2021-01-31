@@ -54,4 +54,4 @@ plan, cost = find_best_plan(state, [Travel('me', 'posX', 'posY')])
 
 ## References
 
-1. "SHPE: HTN Planning for Video Games", Alexandre Menif, Eric Jacopin, Tristan Cazenave. Available [online](www.lamsade.dauphine.fr/~cazenave/papers/MenifCGW2014.pdf).
+1. "SHPE: HTN Planning for Video Games", Alexandre Menif, Eric Jacopin, Tristan Cazenave. Available [online](http://www.lamsade.dauphine.fr/~cazenave/papers/MenifCGW2014.pdf).
