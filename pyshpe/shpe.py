@@ -69,12 +69,11 @@ def shpe_next(stack, best_plan, best_cost):
             plan.append(task)
             cost += task.cost(state)
 
-            new_tn = deepcopy(task_network)
-            new_tn.pop(0)
+            new_tn = task_network[1:].copy()
             stack.insert(0, (plan, cost, task.apply(deepcopy(state)), new_tn))
     elif isinstance(task, CompoundTask):
         for tn in task.decompose(state):
-            new_tn = replace_with_array(deepcopy(task_network), 0, tn)
+            new_tn = tn + task_network[1:].copy()
             stack.insert(0, (plan, cost, deepcopy(state), new_tn))
 
 
@@ -83,7 +82,7 @@ def find_first_plan(state, task_network):
     best_plan = []
     best_cost = 1e9  # todo Why doesn't float('inf') work?
 
-    stack.insert(0, ([], 0, state, task_network))
+    stack.append(([], 0, state, task_network))
 
     while best_cost == 1e9 and len(stack) > 0:
         result = shpe_next(stack, best_plan, best_cost)

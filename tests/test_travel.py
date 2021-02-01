@@ -1,5 +1,4 @@
 # Travel problem based on Pyhop example
-import logging
 from dataclasses import dataclass
 from pyshpe import State, PrimitiveTask, CompoundTask, find_first_plan
 
@@ -108,10 +107,8 @@ def test_walk():
     assert len(plan) == 0
 
 
-def test_full_travel():
-    logging.basicConfig(level=logging.INFO)
+def test_full_travel_with_cash():
     state = State()
-
     state.loc = {'me': 'posX', 'taxi': 'cab_stand'}
     state.cash = {'me': 20}
     state.owe = {'me': 0}
@@ -129,6 +126,9 @@ def test_full_travel():
     assert type(plan[2]) == PayDriver
     assert cost == 3.0
 
+
+def test_full_travel_without_cash():
+    state = State()
     state.loc = {'me': 'posX', 'taxi': 'cab_stand'}
     state.cash = {'me': 0}
     state.owe = {'me': 0}
